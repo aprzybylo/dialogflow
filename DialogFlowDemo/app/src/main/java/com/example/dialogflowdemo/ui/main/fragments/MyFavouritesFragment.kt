@@ -1,4 +1,4 @@
-package com.example.dialogflowdemo.ui.main
+package com.example.dialogflowdemo.ui.main.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,16 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.dialogflowdemo.MainActivity
 import com.example.dialogflowdemo.R
+import com.example.dialogflowdemo.ui.main.PageViewModel
+import com.example.dialogflowdemo.ui.main.adapters.MoviesAdapter
+import kotlinx.android.synthetic.main.fragment_myfavourites.myfavourites_recycler_view
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class HomeFragment : Fragment() {
+class MyFavouritesFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
 
@@ -28,11 +32,12 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_myfavourites, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
         pageViewModel.text.observe(this, Observer<String> {
             textView.text = it
         })
+
         return root
     }
 
@@ -48,8 +53,8 @@ class HomeFragment : Fragment() {
          * number.
          */
         @JvmStatic
-        fun newInstance(sectionNumber: Int): HomeFragment {
-            return HomeFragment().apply {
+        fun newInstance(sectionNumber: Int): MyFavouritesFragment {
+            return MyFavouritesFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }

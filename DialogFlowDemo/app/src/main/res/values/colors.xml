@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <!-- Light Pink -->
+    <color name="colorPrimary">#e91e63</color>
+    <!-- Dark Pink -->
+    <color name="colorPrimaryDark">#c2185b</color>
+
+    <color name="colorAccent">#fff</color>
+
+    <color name="darkGrey">#3b3b3b</color>
+    <color name="lightGrey">#9c9c9c</color>
+    <color name="veryLightGrey">#c3c3c3</color>
+    <color name="background">#fafafa</color>
+
 </resources>

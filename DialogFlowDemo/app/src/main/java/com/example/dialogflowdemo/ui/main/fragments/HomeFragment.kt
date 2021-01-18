@@ -1,19 +1,25 @@
-package com.example.dialogflowdemo.ui.main
+    package com.example.dialogflowdemo.ui.main.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.dialogflowdemo.MainActivity
 import com.example.dialogflowdemo.R
+import com.example.dialogflowdemo.ui.main.PageViewModel
+import com.example.dialogflowdemo.ui.main.adapters.MoviesAdapter
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class MyFavouritesFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private lateinit var pageViewModel: PageViewModel
 
@@ -28,11 +34,19 @@ class MyFavouritesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_myfavourites, container, false)
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
         pageViewModel.text.observe(this, Observer<String> {
             textView.text = it
         })
+
+        val recycledView: RecyclerView = root.findViewById(R.id.movies_recycler_view)
+
+        recycledView.setLayoutManager(LinearLayoutManager(context))
+
+        recycledView.adapter = MoviesAdapter(MainActivity.MOVIES_LIST)
+        (recycledView.adapter as MoviesAdapter).notifyDataSetChanged()
+
         return root
     }
 
@@ -48,8 +62,8 @@ class MyFavouritesFragment : Fragment() {
          * number.
          */
         @JvmStatic
-        fun newInstance(sectionNumber: Int): MyFavouritesFragment {
-            return MyFavouritesFragment().apply {
+        fun newInstance(sectionNumber: Int): HomeFragment {
+            return HomeFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
